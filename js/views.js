@@ -1,3 +1,47 @@
+var AppView = Backbone.View.extend({
+
+  template: JST["app"],
+
+  render: function() {
+    this.$el.html( this.template() );
+    return this;
+  }
+
+});
+
+var NavView = Backbone.View.extend({
+
+  tagName: "nav",
+
+  template: JST["nav"],
+
+  events: {
+    "click a" : "onClick"
+  },
+
+  render: function() {
+    this.$el.html(this.template());
+    return this;
+  },
+  showSpinner: function() {
+    this.$(".products i").show();
+  },
+  hideSpinner: function() {
+    this.$(".products i").hide();
+  },
+  onClick: function(e) {
+    e.preventDefault();
+    var name = $(e.currentTarget).data("name");
+    var href = $(e.currentTarget).attr("href");
+    // $link = this.$(e.currentTarget);
+    // this.trigger("link:click", $link.data("name"));
+    this.trigger("link:click", {
+      name: name,
+      href: href
+    });
+  }
+});
+
 var CollectionView = Backbone.View.extend({
   initialize: function() {
     this.listenTo(this.collection, "add", this.appendItem);
@@ -47,29 +91,6 @@ var ProductView = Backbone.View.extend({
 var ProductsView = CollectionView.extend({
   itemView: ProductView,
   className: "products"
-});
-
-var NavView = Backbone.View.extend({
-  events: {
-    "click a" : "onClick"
-  },
-  template: JST["nav"],
-  tagName: "nav",
-  render: function() {
-    this.$el.html(this.template());
-    return this;
-  },
-  showSpinner: function() {
-    this.$(".products i").show();
-  },
-  hideSpinner: function() {
-    this.$(".products i").hide();
-  },
-  onClick: function(e) {
-    e.preventDefault();
-    $link = this.$(e.currentTarget);
-    this.trigger("link:click", $link.data("name"));
-  }
 });
 
 var HomeView = Backbone.View.extend({

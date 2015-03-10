@@ -2,7 +2,7 @@
   "name": "router-refector",
   "version": "0.0.0",
   "authors": [
-    "JD Isaacks <jd@jisaacks.com>"
+    "Katherine Trammell <ktrammell@gmail.com>"
   ],
   "description": "A homework assignment to be refactored to use Backbone.Router",
   "license": "ISC",
@@ -24,5 +24,9 @@
   "devDependencies": {
     "mocha": "~2.2.1",
     "chai": "~2.1.1"
-  }
+  },
+  "homepage": "https://github.com/ktrammell95/tiy-assignment-22",
+  "keywords": [
+    "backbone.router"
+  ]
 }

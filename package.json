@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "JD Isaacks",
+  "author": "Katherine Trammell",
   "license": "ISC",
   "devDependencies": {
     "underscore": "~1.8.2",
@@ -17,5 +17,16 @@
     "gulp-wrap": "~0.11.0",
     "gulp-less": "~3.0.1",
     "gulp-concat": "~2.5.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ktrammell95/tiy-assignment-22.git"
+  },
+  "keywords": [
+    "Backbone.router"
+  ],
+  "bugs": {
+    "url": "https://github.com/ktrammell95/tiy-assignment-22/issues"
+  },
+  "homepage": "https://github.com/ktrammell95/tiy-assignment-22"
 }

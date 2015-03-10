@@ -1,10 +1,17 @@
-var App = (function(){
+var App = Backbone.Router.extend({
 
-  function App() {
-    _.extend(this, Backbone.Events);
+  routes: {
+    ""         : "showHome",
+    "products" : "showProducts",
+    "terms"    : "showTerms",
+  },
+
+    initialize: function(){
+      this.initialSetup();
+  },
 
     // views
-
+    initialSetup: function() {
     this.products     = new Products();
     this.productsView = new ProductsView({collection: this.products});
     this.nav          = new NavView();
@@ -12,13 +19,10 @@ var App = (function(){
     this.termsView    = new TermsView();
 
     // initial structure
-
     $("body").html( JST.app() );
     $("header").html( this.nav.render().el );
-    this.$main = $(".main");
 
     // listeners
-
     this.listenTo(this.products, "request", function(){
       this.nav.showSpinner();
     });
@@ -27,8 +31,8 @@ var App = (function(){
       this.nav.hideSpinner();
     });
 
-    this.listenTo(this.nav, "link:click", function(name){
-      switch(name) {
+    this.listenTo(this.nav, "link:click", function(options){
+      switch(options.name) {
         case "products":
           this.showProducts();
         break;
@@ -39,14 +43,14 @@ var App = (function(){
           this.showHome();
         break;
       }
+      this.navigate(options.href);
     });
 
+      this.$main = $(".main");
     // default to showing home
 
-    this.showHome();
-  }
-
-  App.prototype = {
+    // this.showHome();
+  },
 
     showProducts: function() {
       this.$main.html( this.productsView.render().el );
@@ -63,8 +67,4 @@ var App = (function(){
       this.$main.html( this.termsView.render().el );
     }
 
-  };
-
-  return App;
-
-})();
+});
